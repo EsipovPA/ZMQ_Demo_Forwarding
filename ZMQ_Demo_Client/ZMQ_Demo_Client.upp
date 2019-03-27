@@ -1,0 +1,8 @@
+uses
+	ZMQ_Worker;
+
+file
+	main.cpp,
+	ZMQ_Demo_Client.cpp,
+	ZMQ_Demo_Client.h;
+
