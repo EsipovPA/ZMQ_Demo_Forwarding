@@ -1,0 +1,8 @@
+uses
+	Core,
+	ZMQ_431;
+
+file
+	ZMQ_Worker.h,
+	ZMQ_Worker.cpp;
+
