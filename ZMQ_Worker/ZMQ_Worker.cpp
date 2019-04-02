@@ -41,6 +41,10 @@ bool BindPtrToAddr(zmq::socket_t *sockPtr, std::string *bindStr){
 	return true;
 }
 
+bool BindPtrToAddr(zmq::socket_t *sockPtr, std::string bindStr){
+	return BindPtrToAddr(sockPtr, &bindStr);
+}
+
 bool ConnectPtrToAddr(zmq::socket_t *sockPtr, std::string *conStr){
 	try{
 		sockPtr->connect(*conStr);
@@ -49,6 +53,10 @@ bool ConnectPtrToAddr(zmq::socket_t *sockPtr, std::string *conStr){
 		return false;
 	}
 	return true;
+}
+
+bool ConnectPtrToAddr(zmq::socket_t *sockPtr, std::string conStr){
+	return ConnectPtrToAddr(sockPtr, conStr);
 }
 
 bool SendMessage(zmq::socket_t *sockPtr, string *message){
@@ -81,15 +89,26 @@ bool SendMessageWFlag(zmq::socket_t *sockPtr, string message, int flag = 0){
 	return SendMessageWFlag(sockPtr, &message, flag);
 }
 
-std::string RecvMessge(zmq::socket_t *sokcet){
+std::string RecvMessage(zmq::socket_t *sokcet){
 	zmq::message_t message;
 	sokcet->recv(&message);
 	
 	return std::string(static_cast<char*>(message.data()), message.size());
 }
 
+std::string RecvMessageWFlag(zmq::socket_t *socket, int flag){
+	zmq::message_t message;
+	socket->recv(&message, flag);
+	
+	return std::string(static_cast<char*>(message.data()), message.size());
+}
+
+
+//to set Socket ID correctly, one may need to convert std::string to const chat pointer;
+//The way I do it may seem not very optimal, but this works, so right now it does not matter
 void SetSocketID(zmq::socket_t *sockPtr, string newID){
-	sockPtr->setsockopt(ZMQ_IDENTITY, &newID, sizeof(newID));
+	Upp::String newName = newID;
+	sockPtr->setsockopt(ZMQ_IDENTITY, newName, newName.GetCharCount());
 }
 
 //===================================================================

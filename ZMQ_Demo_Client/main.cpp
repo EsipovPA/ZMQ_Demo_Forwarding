@@ -9,7 +9,7 @@ int main()
 	ZMQ_Demo_Client testClient;
 	
 	testClient.ConnectFront("tcp://localhost:5555");
-	testClient.SetLogFileName("Cl_1_Log.txt");
+	testClient.SetClientLog("Cl_1_Log.txt");
 	testClient.SetID("Client 1");
 	testClient.DoWork();
 	

@@ -4,5 +4,6 @@ uses
 
 file
 	ZMQ_Worker.h,
+	main.cpp,
 	ZMQ_Worker.cpp;
 

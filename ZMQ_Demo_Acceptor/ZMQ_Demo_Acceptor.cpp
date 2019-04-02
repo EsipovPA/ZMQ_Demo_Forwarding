@@ -51,8 +51,9 @@ void ZMQ_Demo_Acceptor::DoWork()
 				SendMessageWFlag(sockPtrs[0]->socket, "", ZMQ_SNDMORE);
 				SendMessage(sockPtrs[0]->socket, "Ok");
 				
-				
-				//Send "Do work request" to worker here
+				cout << "Send message:" << message << " from: " << addr << " to Worker main\n";
+				SendMessageWFlag(sockPtrs[1]->socket, addr, ZMQ_SNDMORE);
+				SendMessage(sockPtrs[1]->socket, "(acceptor)" + message);
 			}else{
 				cout << "unknown message on front: " << message << "\n";
 			}

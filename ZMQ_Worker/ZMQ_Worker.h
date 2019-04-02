@@ -60,7 +60,11 @@ bool BindByPtr(zmq::socket_t *sockPtr, std::string *bindStr);
 
 bool BindPtrToAddr(zmq::socket_t *sockPtr, std::string *bindStr);
 
+bool BindPtrToAddr(zmq::socket_t *sockPtr, std::string bindStr);
+
 bool ConnectPtrToAddr(zmq::socket_t *sockPtr, std::string *conStr);
+
+bool ConnectPtrToAddr(zmq::socket_t *sockPtr, std::string conStr);
 
 bool SendMessage(zmq::socket_t *sockPtr, std::string *message);
 
@@ -72,6 +76,8 @@ bool SendMessageWFlag(zmq::socket_t *sockPtr, std::string message, int flag);
 
 void SetSocketID(zmq::socket_t *sockPtr, std::string newID);
 
-std::string RecvMessge(zmq::socket_t *sokcet);
+std::string RecvMessage(zmq::socket_t *sokcet);
+
+std::string RecvMessageWFlag(zmq::socket_t *socket, int flag = 0);
 
 #endif
